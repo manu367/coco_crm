@@ -1,2 +1,2 @@
 # coco_crm
-This is coco crm for ecommerce business. Here user can manage thier multiple business (Amazon Selling Account , and another business account)
+This is Coco CRM for e-commerce businesses. Here, users can manage multiple businesses (Amazon seller accounts and other business accounts).
