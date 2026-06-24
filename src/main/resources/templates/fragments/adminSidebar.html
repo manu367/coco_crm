@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Sidebar -->
+<div th:fragment="adminSidebar">
+    <!-- Overlay -->
+    <div id="overlay"
+         class="fixed inset-0 bg-black/50 hidden lg:hidden z-40">
+    </div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar"
+           class="fixed lg:relative inset-y-0 left-0 z-50
+           w-72 bg-slate-900 text-white
+           flex flex-col
+           transform -translate-x-full lg:translate-x-0
+           transition-transform duration-300 ease-in-out
+           shadow-2xl">
+
+        <!-- Logo -->
+        <div class="h-16 flex items-center px-6 border-b border-slate-700 flex-shrink-0">
+
+            <h1 class="text-xl font-bold">
+                CRM Admin
+            </h1>
+
+        </div>
+
+        <!-- Scrollable Menu -->
+        <div class="flex-1 overflow-y-auto">
+
+            <nav class="p-4 space-y-2">
+
+                <!-- Dashboard -->
+                <a href="#"
+                   class="nav-link  flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300">
+                    <span>📊</span>
+                    <span>Home</span>
+                </a>
+
+                <!-- Dashboard -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>👤</span>
+                            <span>Dashboard</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#"
+                               class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800 transition">
+                                Overview
+                            </a>
+
+                            <a href="#"
+                               class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800 transition">
+                                Analytics
+                            </a>
+
+                            <a href="#"
+                               class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800 transition">
+                                Activity Logs
+                            </a>
+                            <a href="#"
+                               class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800 transition">
+                                KPI Reports
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Website Management -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>📦</span>
+                            <span>Website Management</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Home Page
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                About Us
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Website Settings
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Testimonials
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Sales Plans/Banners
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                SEO Settings
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Menus
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Payment Management
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Product Management -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Products</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                All Products
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Add Product
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Categories/Model
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Sub Categories
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Brands
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Attributes
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Product Variants
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Inventory
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Product Reviews
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Order Management -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Order Management</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                All Orders
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Pending Orders
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Processing
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Shipped
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Delivered
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Cancelled
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Returns & Refunds
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Customer Management -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Customer Management</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                All Customers
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Customer Groups
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Addresses
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Loyalty Program
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Customer Notes
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Customer Activity
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Returns & Refunds
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Sales & Payments -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Sales & Payments</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Transactions
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Invoices
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Payment Gateway
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Refund Requests
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Wallet Management
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Revenue Reports
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Offers & Coupons -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Offers & Coupons</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Coupons
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Promo Codes
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Gift Cards
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Discount Rules
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Flash Sales
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Marketing -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Marketing</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Campaigns
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Email Marketing
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                SMS Marketing
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                WhatsApp Marketing
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Push Notifications
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Leads
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Landing Pages
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Affiliate Program
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--CRM -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>CRM</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Leads
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Opportunities
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Deals Pipeline
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Contacts
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Companies
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Tasks
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Meetings
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Follow Ups
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Notes
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Support Center -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Support Center</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Support Tickets
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Live Chat
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Knowledge Base
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                FAQs
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Customer Complaints
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Escalations
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Support Agents
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--IVR & Communication -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>IVR & Communication</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                IVR Flows
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Call Logs
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Call Recordings
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Voice Campaigns
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Incoming Calls
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Outgoing Calls
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                WhatsApp Inbox
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Warehouse -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Warehouse</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Warehouses
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Stock Management
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Purchase Orders
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Suppliers
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Stock Transfers
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Stock Audit
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Payment Settlement
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Logistics -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Logistics</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Shipping Partners
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Delivery Tracking
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Pickup Requests
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Shipping Rates
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Reports & Analytics -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Reports & Analytics</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Sales Report
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Customer Report
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Product Report
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Marketing Report
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                CRM Report
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Support Report
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Revenue Report
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Team Management -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Team Management</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Employees
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Departments
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Attendance
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Roles
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Permissions
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Access Logs
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Activity Logs
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Security Management -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>Security</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Login History
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Audit Logs
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                API Keys
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Sessions
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Device Management
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!--System Settings -->
+                <div class="menu-group">
+
+                    <button
+                            class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
+
+                        <div class="flex items-center gap-3">
+                            <span>🛒</span>
+                            <span>System Settings</span>
+                        </div>
+
+                        <svg class="arrow w-4 h-4 transition-transform duration-300"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="submenu overflow-hidden max-h-0 transition-all duration-500">
+
+                        <div class="pl-6 pt-2 space-y-1">
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                General Settings
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Company Profile
+                            </a>
+
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Email Configuration
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                SMS Configuration
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Payment Configuration
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Integrations
+                            </a>
+                            <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-800">
+                                Backup & Restore
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </aside>
+</div>
+</body>
+</html>

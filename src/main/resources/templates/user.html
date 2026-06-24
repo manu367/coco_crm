@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+        .activeNav{
+            background:white !important;
+            color:black !important;
+            font-weight:600;
+            transform:translateX(5px);
+            box-shadow:0 8px 20px rgba(255,255,255,.15);
+        }
+
+    </style>
+</head>
+<body class="bg-slate-100">
+
+<div class="flex h-screen">
+    <div th:replace="~{fragments/adminSidebar :: adminSidebar}"></div>
+
+    <!-- Main Area -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+        <!-- Navbar -->
+        <header class="bg-white shadow-sm">
+
+            <div class="flex items-center justify-between px-6 py-4">
+
+                <div class="flex items-center gap-4">
+
+                    <button id="menuBtn"
+                            class="lg:hidden text-2xl">
+                        ☰
+                    </button>
+
+                    <h2 class="text-xl font-semibold">
+                        Dashboard
+                    </h2>
+
+                </div>
+
+                <div class="flex items-center gap-4">
+
+                    <button class="relative">
+                        🔔
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+                            5
+                        </span>
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <img
+                                src="https://ui-avatars.com/api/?name=Admin"
+                                class="w-10 h-10 rounded-full"
+                                alt="">
+                        <span class="font-medium">
+                            Admin
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Content -->
+        <main class="flex-1 overflow-y-auto p-6">
+
+            <!-- Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <p class="text-gray-500">Total Users</p>
+                    <h2 class="text-3xl font-bold mt-2">12,540</h2>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <p class="text-gray-500">Orders</p>
+                    <h2 class="text-3xl font-bold mt-2">8,230</h2>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <p class="text-gray-500">Revenue</p>
+                    <h2 class="text-3xl font-bold mt-2">₹18.4L</h2>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <p class="text-gray-500">Products</p>
+                    <h2 class="text-3xl font-bold mt-2">1,320</h2>
+                </div>
+
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="bg-white rounded-xl shadow mt-8">
+
+                <div class="p-5 border-b">
+                    <h3 class="text-lg font-semibold">
+                        Recent Orders
+                    </h3>
+                </div>
+
+                <div class="overflow-x-auto">
+
+                    <table class="w-full">
+
+                        <thead class="bg-gray-50">
+
+                        <tr>
+                            <th class="text-left p-4">Order ID</th>
+                            <th class="text-left p-4">Customer</th>
+                            <th class="text-left p-4">Amount</th>
+                            <th class="text-left p-4">Status</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr class="border-b">
+                            <td class="p-4">#1001</td>
+                            <td class="p-4">Manu</td>
+                            <td class="p-4">₹1,500</td>
+                            <td class="p-4">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                                    Delivered
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr class="border-b">
+                            <td class="p-4">#1002</td>
+                            <td class="p-4">Rahul</td>
+                            <td class="p-4">₹2,500</td>
+                            <td class="p-4">
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+                                    Pending
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="p-4">#1003</td>
+                            <td class="p-4">Amit</td>
+                            <td class="p-4">₹3,100</td>
+                            <td class="p-4">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                                    Delivered
+                                </span>
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script>
+
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    /* Mobile Sidebar */
+
+    menuBtn.addEventListener("click", () => {
+
+        sidebar.classList.toggle("-translate-x-full");
+        overlay.classList.toggle("hidden");
+
+    });
+
+    overlay.addEventListener("click", () => {
+
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+
+    });
+
+
+    /* Accordion Menu */
+
+    const toggles = document.querySelectorAll(".menu-toggle");
+
+    toggles.forEach(toggle => {
+
+        toggle.addEventListener("click", () => {
+
+            const submenu =
+                toggle.parentElement.querySelector(".submenu");
+
+            const arrow =
+                toggle.querySelector(".arrow");
+
+            document.querySelectorAll(".submenu").forEach(item => {
+
+                if(item !== submenu){
+
+                    item.style.maxHeight = null;
+
+                    const parentArrow =
+                        item.parentElement.querySelector(".arrow");
+
+                    parentArrow.classList.remove("rotate-180");
+                }
+
+            });
+
+            if(submenu.style.maxHeight){
+
+                submenu.style.maxHeight = null;
+                arrow.classList.remove("rotate-180");
+
+            }else{
+
+                submenu.style.maxHeight =
+                    submenu.scrollHeight + "px";
+
+                arrow.classList.add("rotate-180");
+
+            }
+
+        });
+
+    });
+
+
+    /* Active Menu */
+
+    const navLinks =
+        document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(link => {
+
+        link.addEventListener("click", function(){
+
+            navLinks.forEach(item => {
+
+                item.classList.remove("activeNav");
+
+            });
+
+            this.classList.add("activeNav");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
