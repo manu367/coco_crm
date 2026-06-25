@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Authentication Successful | CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        // Example Auto Redirect
+        setTimeout(() => {
+            window.location.href = "/dashboard";
+        }, 5000);
+    </script>
+</head>
+
+<body class="min-h-screen bg-slate-100">
+
+<div class="flex min-h-screen flex-col lg:flex-row">
+
+    <!-- Left Side -->
+    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-700 via-indigo-700 to-slate-900 text-white relative overflow-hidden">
+
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-white/10 rounded-full"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-cyan-400/10 rounded-full"></div>
+
+        <div class="relative z-10 flex flex-col justify-center px-16">
+
+        <span class="bg-white/20 px-4 py-2 rounded-full text-sm w-fit">
+          OAuth Authentication
+        </span>
+
+            <h1 class="text-6xl font-bold leading-tight mt-8">
+                Welcome Back
+            </h1>
+
+            <p class="mt-6 text-lg text-blue-100 max-w-lg">
+                Your account has been successfully authenticated. Preparing your CRM workspace now.
+            </p>
+
+            <div class="grid grid-cols-3 gap-6 mt-12">
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-5">
+                    <h3 class="text-3xl font-bold">Secure</h3>
+                    <p class="text-sm text-blue-100 mt-1">
+                        Login
+                    </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-5">
+                    <h3 class="text-3xl font-bold">Fast</h3>
+                    <p class="text-sm text-blue-100 mt-1">
+                        Access
+                    </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-5">
+                    <h3 class="text-3xl font-bold">100%</h3>
+                    <p class="text-sm text-blue-100 mt-1">
+                        Verified
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+    <div class="w-full lg:w-1/2 bg-white flex items-center justify-center px-6 py-12">
+
+        <div class="w-full max-w-md text-center">
+
+            <!-- Success Icon -->
+            <div class="mx-auto w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mb-6">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-12 h-12 text-green-600"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor">
+
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"/>
+                </svg>
+
+            </div>
+
+            <h2 class="text-3xl font-bold text-slate-900">
+                Authentication Successful
+            </h2>
+
+            <p class="mt-4 text-slate-500">
+                You have successfully signed in using your OAuth provider.
+            </p>
+
+            <div class="mt-8 bg-slate-50 border border-slate-200 rounded-xl p-5">
+
+                <div class="flex justify-between py-2">
+                    <span class="text-slate-500">Provider</span>
+                    <span class="font-medium">Google</span>
+                </div>
+
+                <div class="flex justify-between py-2">
+                    <span class="text-slate-500">Status</span>
+                    <span class="font-medium text-green-600">Verified</span>
+                </div>
+
+                <div class="flex justify-between py-2">
+                    <span class="text-slate-500">Workspace</span>
+                    <span class="font-medium">CRM Dashboard</span>
+                </div>
+
+            </div>
+
+            <!-- Loading -->
+            <div class="mt-8">
+
+                <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                    <div class="bg-blue-600 h-2 rounded-full animate-pulse w-full"></div>
+                </div>
+
+                <p class="mt-4 text-sm text-slate-500">
+                    Redirecting to dashboard in 5 seconds...
+                </p>
+
+            </div>
+
+            <!-- Manual Button -->
+            <a href="/dashboard"
+               class="mt-8 inline-flex items-center justify-center w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition">
+                Continue to Dashboard
+            </a>
+
+            <div class="mt-8 border-t pt-6">
+                <p class="text-center text-sm text-slate-500">
+                    © 2026 CRM Management System
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

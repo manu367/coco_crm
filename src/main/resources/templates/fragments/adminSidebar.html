@@ -5,21 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<!-- Sidebar -->
-<div th:fragment="adminSidebar">
-    <!-- Overlay -->
-    <div id="overlay"
-         class="fixed inset-0 bg-black/50 hidden lg:hidden z-40">
-    </div>
-
-    <!-- Sidebar -->
-    <aside id="sidebar"
+<aside id="sidebar" th:fragment="adminSidebar"
            class="fixed lg:relative inset-y-0 left-0 z-50
-           w-72 bg-slate-900 text-white
-           flex flex-col
-           transform -translate-x-full lg:translate-x-0
-           transition-transform duration-300 ease-in-out
-           shadow-2xl">
+       w-72 bg-slate-900 text-white
+       flex flex-col
+       overflow-hidden
+       transform -translate-x-full lg:translate-x-0
+       transition-transform duration-300 ease-in-out
+       shadow-2xl">
 
         <!-- Logo -->
         <div class="h-16 flex items-center px-6 border-b border-slate-700 flex-shrink-0">
@@ -31,17 +24,16 @@
         </div>
 
         <!-- Scrollable Menu -->
-        <div class="flex-1 overflow-y-auto">
+        <div class="flex-1 overflow-y-auto min-h-0">
 
             <nav class="p-4 space-y-2">
 
                 <!-- Dashboard -->
                 <a href="#"
                    class="nav-link  flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300">
-                    <span>📊</span>
+                    <i class="fa-solid fa-house"></i>
                     <span>Home</span>
                 </a>
-
                 <!-- Dashboard -->
                 <div class="menu-group">
 
@@ -49,7 +41,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>👤</span>
+                            <i class="fa-solid fa-gauge-high"></i>
                             <span>Dashboard</span>
                         </div>
 
@@ -94,7 +86,6 @@
                     </div>
 
                 </div>
-
                 <!-- Website Management -->
                 <div class="menu-group">
 
@@ -102,7 +93,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>📦</span>
+                            <i class="fa-solid fa-globe"></i>
                             <span>Website Management</span>
                         </div>
 
@@ -156,7 +147,6 @@
                     </div>
 
                 </div>
-
                 <!-- Product Management -->
                 <div class="menu-group">
 
@@ -164,7 +154,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-box-open"></i>
                             <span>Products</span>
                         </div>
 
@@ -220,7 +210,6 @@
                     </div>
 
                 </div>
-
                 <!-- Order Management -->
                 <div class="menu-group">
 
@@ -228,7 +217,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-cart-shopping"></i>
                             <span>Order Management</span>
                         </div>
 
@@ -278,7 +267,6 @@
                     </div>
 
                 </div>
-
                 <!--Customer Management -->
                 <div class="menu-group">
 
@@ -286,7 +274,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-users"></i>
                             <span>Customer Management</span>
                         </div>
 
@@ -336,7 +324,6 @@
                     </div>
 
                 </div>
-
                 <!--Sales & Payments -->
                 <div class="menu-group">
 
@@ -344,7 +331,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-credit-card"></i>
                             <span>Sales & Payments</span>
                         </div>
 
@@ -390,7 +377,6 @@
                     </div>
 
                 </div>
-
                 <!--Offers & Coupons -->
                 <div class="menu-group">
 
@@ -398,7 +384,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-tags"></i>
                             <span>Offers & Coupons</span>
                         </div>
 
@@ -441,7 +427,6 @@
                     </div>
 
                 </div>
-
                 <!--Marketing -->
                 <div class="menu-group">
 
@@ -449,7 +434,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-bullhorn"></i>
                             <span>Marketing</span>
                         </div>
 
@@ -501,7 +486,6 @@
                     </div>
 
                 </div>
-
                 <!--CRM -->
                 <div class="menu-group">
 
@@ -509,7 +493,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-user-group"></i>
                             <span>CRM</span>
                         </div>
 
@@ -564,7 +548,6 @@
                     </div>
 
                 </div>
-
                 <!--Support Center -->
                 <div class="menu-group">
 
@@ -572,7 +555,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-headset"></i>
                             <span>Support Center</span>
                         </div>
 
@@ -621,7 +604,6 @@
                     </div>
 
                 </div>
-
                 <!--IVR & Communication -->
                 <div class="menu-group">
 
@@ -629,7 +611,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-phone-volume"></i>
                             <span>IVR & Communication</span>
                         </div>
 
@@ -678,7 +660,6 @@
                     </div>
 
                 </div>
-
                 <!--Warehouse -->
                 <div class="menu-group">
 
@@ -686,7 +667,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-warehouse"></i>
                             <span>Warehouse</span>
                         </div>
 
@@ -735,7 +716,6 @@
                     </div>
 
                 </div>
-
                 <!--Logistics -->
                 <div class="menu-group">
 
@@ -743,7 +723,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-truck-fast"></i>
                             <span>Logistics</span>
                         </div>
 
@@ -783,7 +763,6 @@
                     </div>
 
                 </div>
-
                 <!--Reports & Analytics -->
                 <div class="menu-group">
 
@@ -791,7 +770,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-chart-line"></i>
                             <span>Reports & Analytics</span>
                         </div>
 
@@ -840,7 +819,6 @@
                     </div>
 
                 </div>
-
                 <!--Team Management -->
                 <div class="menu-group">
 
@@ -848,7 +826,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-user-tie"></i>
                             <span>Team Management</span>
                         </div>
 
@@ -897,7 +875,6 @@
                     </div>
 
                 </div>
-
                 <!--Security Management -->
                 <div class="menu-group">
 
@@ -905,7 +882,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-shield-halved"></i>
                             <span>Security</span>
                         </div>
 
@@ -948,8 +925,6 @@
                     </div>
 
                 </div>
-
-
                 <!--System Settings -->
                 <div class="menu-group">
 
@@ -957,7 +932,7 @@
                             class="menu-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-300">
 
                         <div class="flex items-center gap-3">
-                            <span>🛒</span>
+                            <i class="fa-solid fa-gears"></i>
                             <span>System Settings</span>
                         </div>
 
@@ -1006,12 +981,8 @@
                     </div>
 
                 </div>
-
             </nav>
-
         </div>
-
     </aside>
-</div>
 </body>
 </html>
