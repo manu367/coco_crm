@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ::-webkit-scrollbar{
+            width:6px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background:transparent;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:#334155;
+            border-radius:20px;
+        }
+        .activeNav{
+            background:white !important;
+            color:black !important;
+            font-weight:600;
+            transform:translateX(5px);
+            box-shadow:0 8px 20px rgba(255,255,255,.15);
+        }
+        @keyframes fadeScale{
+            from{
+                opacity:0;
+                transform:translateY(15px) scale(.95);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0) scale(1);
+            }
+        }
+
+        .animate-fade{
+            animation:fadeScale .25s ease;
+        }
+
+    </style>
+</head>
+<body class="bg-slate-100 overflow-hidden">
+
+<div class="flex h-screen overflow-hidden min-h-0">
+    <div id="overlay"
+         class="fixed inset-0 bg-black/50 hidden lg:hidden z-40">
+    </div>
+    <div th:replace="~{fragments/adminSidebar::adminSidebar}"></div>
+    <!-- Main Area -->
+    <div class="flex-1 flex flex-col overflow-hidden min-h-0">
+        <div th:replace="~{fragments/adminheader::adminheader}"></div>
+        <!-- Scrollable Content -->
+        <main class="flex-1 overflow-y-auto min-h-0 p-4 md:p-6">
+
+            <!-- Heading -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800">Dashboard Overview</h1>
+                    <p class="text-slate-500 mt-1">Welcome back, Admin 👋</p>
+                </div>
+
+                <button
+                        class="mt-4 md:mt-0 px-5 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 duration-300 shadow-lg hover:scale-105">
+                    <i class="fa-solid fa-plus mr-2"></i>New Lead
+                </button>
+            </div>
+
+            <!-- Statistic Cards -->
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+
+                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl transition duration-300 hover:-translate-y-2">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-slate-500">Customers</p>
+                            <h2 class="text-3xl font-bold mt-2">1,280</h2>
+                        </div>
+
+                        <div class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center">
+                            <i class="fa-solid fa-users text-2xl text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl transition duration-300 hover:-translate-y-2">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-slate-500">Leads</p>
+                            <h2 class="text-3xl font-bold mt-2">436</h2>
+                        </div>
+
+                        <div class="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center">
+                            <i class="fa-solid fa-user-plus text-2xl text-green-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl transition duration-300 hover:-translate-y-2">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-slate-500">Employees</p>
+                            <h2 class="text-3xl font-bold mt-2">54</h2>
+                        </div>
+
+                        <div class="w-14 h-14 rounded-xl bg-purple-100 flex items-center justify-center">
+                            <i class="fa-solid fa-user-tie text-2xl text-purple-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl transition duration-300 hover:-translate-y-2">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-slate-500">Revenue</p>
+                            <h2 class="text-3xl font-bold mt-2">₹4.8L</h2>
+                        </div>
+
+                        <div class="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center">
+                            <i class="fa-solid fa-indian-rupee-sign text-2xl text-orange-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Middle Section -->
+
+            <div class="grid lg:grid-cols-3 gap-6 mt-8">
+
+                <!-- Progress -->
+
+                <div class="bg-white rounded-2xl p-6 shadow lg:col-span-1">
+
+                    <h2 class="text-xl font-semibold mb-5">Performance</h2>
+
+                    <div class="space-y-5">
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Sales</span>
+                                <span>82%</span>
+                            </div>
+
+                            <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-full rounded-full w-[82%] transition-all duration-700"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Leads</span>
+                                <span>70%</span>
+                            </div>
+
+                            <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-full rounded-full w-[70%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Target</span>
+                                <span>90%</span>
+                            </div>
+
+                            <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                <div class="bg-orange-500 h-full rounded-full w-[90%]"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Recent Activities -->
+
+                <div class="bg-white rounded-2xl shadow p-6 lg:col-span-2">
+
+                    <div class="flex justify-between items-center mb-5">
+                        <h2 class="text-xl font-semibold">
+                            Recent Activities
+                        </h2>
+
+                        <a href="#" class="text-blue-600">View All</a>
+                    </div>
+
+                    <div class="space-y-4">
+
+                        <div class="flex items-center gap-4 hover:bg-slate-100 rounded-xl p-3 duration-300">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fa-solid fa-user text-blue-600"></i>
+                            </div>
+
+                            <div>
+                                <p class="font-semibold">New Customer Registered</p>
+                                <small class="text-slate-500">2 Minutes Ago</small>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 hover:bg-slate-100 rounded-xl p-3 duration-300">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                                <i class="fa-solid fa-circle-check text-green-600"></i>
+                            </div>
+
+                            <div>
+                                <p class="font-semibold">Lead Converted Successfully</p>
+                                <small class="text-slate-500">15 Minutes Ago</small>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 hover:bg-slate-100 rounded-xl p-3 duration-300">
+                            <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                                <i class="fa-solid fa-phone text-red-600"></i>
+                            </div>
+
+                            <div>
+                                <p class="font-semibold">Call Scheduled</p>
+                                <small class="text-slate-500">1 Hour Ago</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Recent Leads -->
+
+            <div class="bg-white rounded-2xl shadow mt-8 overflow-hidden">
+
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-semibold">Recent Leads</h2>
+                </div>
+
+                <div class="overflow-x-auto">
+
+                    <table class="w-full">
+
+                        <thead class="bg-slate-100">
+                        <tr>
+                            <th class="text-left p-4">Name</th>
+                            <th class="text-left p-4">Company</th>
+                            <th class="text-left p-4">Status</th>
+                            <th class="text-left p-4">Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr class="hover:bg-slate-50 duration-300">
+                            <td class="p-4">Rahul Sharma</td>
+                            <td class="p-4">Tech Solutions</td>
+                            <td class="p-4">
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                            Converted
+                        </span>
+                            </td>
+                            <td class="p-4">
+                                <button class="text-blue-600">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-slate-50 duration-300">
+                            <td class="p-4">Priya Singh</td>
+                            <td class="p-4">Global Pvt Ltd</td>
+                            <td class="p-4">
+                        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+                            Pending
+                        </span>
+                            </td>
+                            <td class="p-4">
+                                <button class="text-blue-600">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+            <!-- Floating More Components Button -->
+            <div class="fixed bottom-6 right-6 z-50">
+
+                <button id="moreBtn"
+                        class="w-14 h-14 rounded-full bg-blue-600 text-white shadow-2xl
+                   hover:scale-110 hover:rotate-90 transition-all duration-300">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+
+                <!-- Floating Menu -->
+                <div id="moreMenu"
+                     class="absolute bottom-16 right-0 w-56 bg-white rounded-2xl shadow-2xl
+                p-3 hidden animate-fade">
+
+                    <a href="#"
+                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-chart-line text-blue-600"></i>
+                        Analytics
+                    </a>
+
+                    <a href="#"
+                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-calendar-days text-green-600"></i>
+                        Calendar
+                    </a>
+
+                    <a href="#"
+                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-list-check text-orange-600"></i>
+                        Tasks
+                    </a>
+
+                    <a href="#"
+                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-chart-pie text-purple-600"></i>
+                        Reports
+                    </a>
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+</div>
+<div th:replace="~{fragments/adminFooter::adminFooter}"></div>
+<script>
+    const moreBtn = document.getElementById("moreBtn");
+    const moreMenu = document.getElementById("moreMenu");
+
+    moreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        moreMenu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", () => {
+        moreMenu.classList.add("hidden");
+    });
+</script>
+</body>
+</html>

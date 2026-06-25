@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script th:fragment="adminFooter">
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    menuBtn.addEventListener("click", () => {
+
+        sidebar.classList.toggle("-translate-x-full");
+
+        if(sidebar.classList.contains("-translate-x-full")){
+            overlay.classList.add("hidden");
+        }else{
+            overlay.classList.remove("hidden");
+        }
+
+    });
+
+    overlay.addEventListener("click", () => {
+
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+
+    });
+
+
+    document.querySelectorAll(".menu-toggle").forEach(toggle => {
+
+        toggle.addEventListener("click", () => {
+
+            const submenu =
+                toggle.parentElement.querySelector(".submenu");
+
+            const arrow =
+                toggle.querySelector(".arrow");
+
+            document.querySelectorAll(".submenu").forEach(item => {
+
+                if(item !== submenu){
+
+                    item.style.maxHeight = null;
+
+                    item.parentElement
+                        .querySelector(".arrow")
+                        ?.classList.remove("rotate-180");
+
+                }
+
+            });
+
+            if(submenu.style.maxHeight){
+
+                submenu.style.maxHeight = null;
+                arrow.classList.remove("rotate-180");
+
+            }else{
+
+                submenu.style.maxHeight =
+                    submenu.scrollHeight + "px";
+
+                arrow.classList.add("rotate-180");
+
+            }
+
+        });
+
+    });
+
+
+    const navLinks =
+        document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(link => {
+
+        link.addEventListener("click", function(){
+
+            navLinks.forEach(item =>
+                item.classList.remove("activeNav")
+            );
+
+            this.classList.add("activeNav");
+
+            if(window.innerWidth < 1024){
+
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("hidden");
+
+            }
+
+        });
+
+    });
+</script>
+</body>
+</html>

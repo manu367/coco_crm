@@ -5,50 +5,52 @@
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="adminheader">
-    <!-- Navbar -->
-    <header class="bg-white shadow-sm">
+<header th:fragment="adminheader" class="bg-white shadow-sm flex-shrink-0">
 
-        <div class="flex items-center justify-between px-6 py-4">
+    <div class="flex items-center justify-between px-4 md:px-6 py-4">
 
-            <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4">
 
-                <button id="menuBtn"
-                        class="lg:hidden text-2xl">
-                    ☰
-                </button>
+            <button id="menuBtn"
+                    class="lg:hidden text-2xl">
+                ☰
+            </button>
 
-                <h2 class="text-xl font-semibold">
-                    Dashboard
-                </h2>
+            <h2 class="text-lg md:text-xl font-semibold">
+                Dashboard
+            </h2>
 
-            </div>
+        </div>
 
-            <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3 md:gap-4">
 
-                <button class="relative">
-                    🔔
-                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+            <button class="relative">
+
+                🔔
+
+                <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
                             5
                         </span>
-                </button>
 
-                <div class="flex items-center gap-2">
-                    <img
-                            src="https://ui-avatars.com/api/?name=Admin"
-                            class="w-10 h-10 rounded-full"
-                            alt="">
-                    <span class="font-medium">
+            </button>
+
+            <div class="flex items-center gap-2">
+
+                <img
+                        src="https://ui-avatars.com/api/?name=Admin"
+                        class="w-9 h-9 rounded-full"
+                        alt="">
+
+                <span class="hidden sm:block font-medium">
                             Admin
                         </span>
-                </div>
 
             </div>
 
         </div>
 
-    </header>
+    </div>
 
-</div>
+</header>
 </body>
 </html>

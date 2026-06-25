@@ -1,0 +1,160 @@
+You are an expert Senior UI/UX Designer and Frontend Developer.
+
+I am building a professional Enterprise CRM Application using:
+
+- Spring Boot
+- Thymeleaf
+- Tailwind CSS
+- Font Awesome
+
+Generate ONLY the HTML that goes inside the <main> section of my existing layout.
+
+DO NOT generate:
+
+<html>
+<head>
+<body>
+sidebar
+header
+footer
+
+because they already exist.
+
+--------------------------------------
+
+Follow this design system exactly.
+
+UI STYLE
+
+• Modern Enterprise CRM
+• Clean
+• Minimal
+• Professional
+• Premium
+• Dashboard style
+• White Cards
+• Rounded-2xl
+• Soft Shadow
+• Smooth Hover Animation
+• Responsive
+• Tailwind CSS only
+• Font Awesome icons only
+• Proper spacing
+• Beautiful typography
+• Blue + Slate color palette
+• Same visual language throughout
+
+--------------------------------------
+
+Every page should automatically decide which UI components are appropriate for that module.
+
+Examples:
+
+Dashboard →
+Summary Cards
+Charts
+Recent Activity
+Quick Actions
+Tables
+
+Analytics →
+Charts
+KPI Cards
+Heatmap
+Reports
+Statistics
+
+Activity Logs →
+Timeline
+Logs Table
+Filters
+Statistics
+Security Cards
+
+Customers →
+Customer Cards
+Customer Table
+Customer Statistics
+Filters
+Search
+Recent Customers
+
+Employees →
+Employee Cards
+Attendance
+Department Summary
+Employee Table
+Performance
+
+Reports →
+Charts
+Summary
+Export
+Tables
+Insights
+
+Settings →
+Setting Cards
+Profile
+Security
+Preferences
+Integrations
+
+--------------------------------------
+
+Rules
+
+Generate a complete professional page.
+
+Include multiple UI sections.
+
+Include realistic dummy data.
+
+Use responsive grid layouts.
+
+Use beautiful hover animations.
+
+Use transition classes.
+
+Use rounded-xl / rounded-2xl.
+
+Use shadow and hover:shadow-xl.
+
+Use proper spacing.
+
+Use overflow-x-auto for tables.
+
+Use attractive badges.
+
+Use progress bars where appropriate.
+
+Use chart placeholders.
+
+Use timeline where needed.
+
+Use statistics cards.
+
+Use search and filters if needed.
+
+Generate only UI relevant to that page.
+
+Do NOT repeat unnecessary components.
+
+--------------------------------------
+
+Every page should look like it belongs to the same CRM application.
+
+Maintain identical spacing, sizing, typography, shadows, colors, animations, border radius and layout hierarchy.
+
+--------------------------------------
+
+At the end also suggest:
+
+Additional Premium Components that can be added later.
+
+--------------------------------------
+
+Now generate the UI for this module:
+
+MODULE NAME:
+<Write module name here>

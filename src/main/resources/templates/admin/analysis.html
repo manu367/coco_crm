@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ::-webkit-scrollbar{
+            width:6px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background:transparent;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:#334155;
+            border-radius:20px;
+        }
+        .activeNav{
+            background:white !important;
+            color:black !important;
+            font-weight:600;
+            transform:translateX(5px);
+            box-shadow:0 8px 20px rgba(255,255,255,.15);
+        }
+        .component-card{
+            border:2px solid #e2e8f0;
+            border-radius:18px;
+            padding:25px;
+            cursor:pointer;
+            text-align:center;
+            transition:.3s;
+        }
+
+        .component-card:hover{
+            transform:translateY(-6px);
+            border-color:#2563eb;
+            box-shadow:0 15px 30px rgba(0,0,0,.08);
+        }
+
+        .component-card.selected{
+            background:#eff6ff;
+            border-color:#2563eb;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 overflow-hidden">
+
+<div class="flex h-screen overflow-hidden min-h-0">
+    <div id="overlay"
+         class="fixed inset-0 bg-black/50 hidden lg:hidden z-40">
+    </div>
+    <div th:replace="~{fragments/adminSidebar::adminSidebar}"></div>
+    <!-- Main Area -->
+    <div class="flex-1 flex flex-col overflow-hidden min-h-0">
+        <div th:replace="~{fragments/adminheader::adminheader}"></div>
+        <!-- Scrollable Content -->
+        <main class="flex-1 overflow-y-auto p-6 space-y-6">
+
+            <!-- Page Header -->
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800">Analytics Dashboard</h1>
+                    <p class="text-slate-500">Overview of CRM performance and business insights.</p>
+                </div>
+
+                <button class="bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700 transition">
+                    <i class="fa-solid fa-download mr-2"></i>
+                    Export Report
+                </button>
+            </div>
+
+            <!-- KPI Cards -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+
+                <div class="bg-white rounded-2xl shadow p-5">
+                    <p class="text-gray-500">Revenue</p>
+                    <h2 class="text-3xl font-bold mt-2">₹2.4M</h2>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5">
+                    <p class="text-gray-500">Customers</p>
+                    <h2 class="text-3xl font-bold mt-2">5,320</h2>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5">
+                    <p class="text-gray-500">Leads</p>
+                    <h2 class="text-3xl font-bold mt-2">1,250</h2>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5">
+                    <p class="text-gray-500">Conversion</p>
+                    <h2 class="text-3xl font-bold mt-2">72%</h2>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5">
+                    <p class="text-gray-500">Sales</p>
+                    <h2 class="text-3xl font-bold mt-2">865</h2>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5">
+                    <p class="text-gray-500">Growth</p>
+                    <h2 class="text-3xl font-bold mt-2">+18%</h2>
+                </div>
+
+            </section>
+
+            <!-- Charts -->
+            <section class="grid lg:grid-cols-2 gap-6">
+
+                <div class="bg-white rounded-2xl shadow p-6">
+                    <h2 class="font-semibold text-lg mb-4">Revenue Trend</h2>
+
+                    <div class="h-80 flex items-center justify-center text-gray-400 border rounded-xl">
+                        Revenue Chart
+                    </div>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-6">
+                    <h2 class="font-semibold text-lg mb-4">Sales Overview</h2>
+
+                    <div class="h-80 flex items-center justify-center text-gray-400 border rounded-xl">
+                        Sales Chart
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Second Charts -->
+            <section class="grid lg:grid-cols-2 gap-6">
+
+                <div class="bg-white rounded-2xl shadow p-6">
+                    <h2 class="font-semibold text-lg mb-4">Lead Sources</h2>
+
+                    <div class="h-72 flex items-center justify-center text-gray-400 border rounded-xl">
+                        Pie Chart
+                    </div>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-6">
+                    <h2 class="font-semibold text-lg mb-4">Monthly Growth</h2>
+
+                    <div class="h-72 flex items-center justify-center text-gray-400 border rounded-xl">
+                        Area Chart
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Performance -->
+            <section class="grid lg:grid-cols-3 gap-6">
+
+                <div class="bg-white rounded-2xl shadow p-6">
+                    <h3 class="font-semibold mb-4">Sales Target</h3>
+
+                    <div class="w-full h-3 bg-gray-200 rounded-full">
+                        <div class="h-3 bg-blue-600 rounded-full w-3/4"></div>
+                    </div>
+
+                    <p class="mt-3 text-gray-500">75% Completed</p>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-6">
+                    <h3 class="font-semibold mb-4">Lead Conversion</h3>
+
+                    <div class="w-full h-3 bg-gray-200 rounded-full">
+                        <div class="h-3 bg-green-500 rounded-full w-2/3"></div>
+                    </div>
+
+                    <p class="mt-3 text-gray-500">68% Completed</p>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-6">
+                    <h3 class="font-semibold mb-4">Customer Retention</h3>
+
+                    <div class="w-full h-3 bg-gray-200 rounded-full">
+                        <div class="h-3 bg-purple-500 rounded-full w-5/6"></div>
+                    </div>
+
+                    <p class="mt-3 text-gray-500">83% Completed</p>
+
+                </div>
+
+            </section>
+
+            <!-- Tables -->
+            <section class="grid lg:grid-cols-2 gap-6">
+
+                <div class="bg-white rounded-2xl shadow overflow-hidden">
+
+                    <div class="p-5 border-b">
+                        <h2 class="font-semibold text-lg">Top Customers</h2>
+                    </div>
+
+                    <table class="w-full">
+
+                        <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-4 text-left">Name</th>
+                            <th class="p-4 text-left">Orders</th>
+                            <th class="p-4 text-left">Revenue</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr class="border-b">
+                            <td class="p-4">Rahul Sharma</td>
+                            <td>25</td>
+                            <td>₹1,20,000</td>
+                        </tr>
+
+                        <tr class="border-b">
+                            <td class="p-4">Priya Singh</td>
+                            <td>18</td>
+                            <td>₹82,000</td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-6">
+
+                    <h2 class="font-semibold text-lg mb-4">Recent Activities</h2>
+
+                    <div class="space-y-4">
+
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle text-green-500"></i>
+                            New Lead Generated
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle text-blue-500"></i>
+                            Deal Closed Successfully
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle text-orange-500"></i>
+                            Customer Meeting Scheduled
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle text-red-500"></i>
+                            Payment Received
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+<div th:replace="~{fragments/adminFooter::adminFooter}"></div>
+
+<!-- Floating Add Component Button -->
+<button id="openComponentModal"
+        class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-blue-600 text-white
+               shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300">
+
+    <i class="fa-solid fa-plus text-2xl"></i>
+
+</button>
+
+<!-- Component Modal -->
+<div id="componentModal"
+     class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]
+            hidden items-center justify-center p-5">
+
+    <div id="modalContent"
+         class="bg-white w-full max-w-5xl rounded-3xl shadow-2xl
+                scale-90 opacity-0 transition-all duration-300">
+
+        <!-- Header -->
+
+        <div class="flex items-center justify-between p-6 border-b">
+
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800">
+                    Add Analytics Component
+                </h2>
+
+                <p class="text-slate-500 text-sm mt-1">
+                    Select the widgets you want to display.
+                </p>
+            </div>
+
+            <button id="closeComponentModal"
+                    class="w-10 h-10 rounded-full hover:bg-slate-100 transition">
+
+                <i class="fa-solid fa-xmark text-xl"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Cards -->
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-6 max-h-[70vh] overflow-y-auto">
+
+            <div class="component-card">
+                <i class="fa-solid fa-chart-line text-3xl text-blue-600 mb-3"></i>
+                <h3 class="font-semibold">Revenue Chart</h3>
+            </div>
+
+            <div class="component-card">
+                <i class="fa-solid fa-chart-column text-3xl text-green-600 mb-3"></i>
+                <h3 class="font-semibold">Sales Chart</h3>
+            </div>
+
+            <div class="component-card">
+                <i class="fa-solid fa-chart-pie text-3xl text-orange-500 mb-3"></i>
+                <h3 class="font-semibold">Pie Chart</h3>
+            </div>
+
+            <div class="component-card">
+                <i class="fa-solid fa-users text-3xl text-purple-600 mb-3"></i>
+                <h3 class="font-semibold">Customers</h3>
+            </div>
+
+            <div class="component-card">
+                <i class="fa-solid fa-user-plus text-3xl text-cyan-600 mb-3"></i>
+                <h3 class="font-semibold">Leads</h3>
+            </div>
+
+            <div class="component-card">
+                <i class="fa-solid fa-sack-dollar text-3xl text-red-500 mb-3"></i>
+                <h3 class="font-semibold">Revenue Card</h3>
+            </div>
+
+            <div class="component-card">
+                <i class="fa-solid fa-list-check text-3xl text-indigo-600 mb-3"></i>
+                <h3 class="font-semibold">Tasks</h3>
+            </div>
+
+            <div class="component-card">
+                <i class="fa-solid fa-clock-rotate-left text-3xl text-pink-600 mb-3"></i>
+                <h3 class="font-semibold">Activity</h3>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+
+        <div class="flex justify-end gap-3 border-t p-5">
+
+            <button id="cancelBtn"
+                    class="px-5 py-2 rounded-xl border hover:bg-slate-100">
+                Cancel
+            </button>
+
+            <button class="px-5 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">
+                Add Selected
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+    const modal = document.getElementById("componentModal");
+    const modalContent = document.getElementById("modalContent");
+
+    document.getElementById("openComponentModal").onclick = () => {
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+
+        setTimeout(() => {
+            modalContent.classList.remove("scale-90","opacity-0");
+            modalContent.classList.add("scale-100","opacity-100");
+        },20);
+
+    };
+
+    function closeModal(){
+
+        modalContent.classList.remove("scale-100","opacity-100");
+        modalContent.classList.add("scale-90","opacity-0");
+
+        setTimeout(()=>{
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        },250);
+
+    }
+
+    document.getElementById("closeComponentModal").onclick = closeModal;
+    document.getElementById("cancelBtn").onclick = closeModal;
+
+    modal.addEventListener("click",(e)=>{
+
+        if(e.target===modal){
+            closeModal();
+        }
+
+    });
+
+    document.querySelectorAll(".component-card").forEach(card=>{
+
+        card.onclick=()=>{
+
+            card.classList.toggle("selected");
+
+        }
+
+    });
+</script>
+</body>
+</html>

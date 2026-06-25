@@ -1,4 +1,4 @@
-package org.coco.coco.controller;
+package org.coco.coco.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ::-webkit-scrollbar{
+            width:6px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background:transparent;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:#334155;
+            border-radius:20px;
+        }
+        .activeNav{
+            background:white !important;
+            color:black !important;
+            font-weight:600;
+            transform:translateX(5px);
+            box-shadow:0 8px 20px rgba(255,255,255,.15);
+        }
+
+    </style>
+</head>
+<body class="bg-slate-100 overflow-hidden">
+
+<div class="flex h-screen overflow-hidden min-h-0">
+    <div id="overlay"
+         class="fixed inset-0 bg-black/50 hidden lg:hidden z-40">
+    </div>
+    <div th:replace="~{fragments/adminSidebar::adminSidebar}"></div>
+    <!-- Main Area -->
+    <div class="flex-1 flex flex-col overflow-hidden min-h-0">
+        <div th:replace="~{fragments/adminheader::adminheader}"></div>
+        <!-- Scrollable Content -->
+        <main class="flex-1 overflow-y-auto min-h-0 p-6 space-y-6">
+
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800">
+                        Activity Logs
+                    </h1>
+
+                    <p class="text-slate-500 mt-1">
+                        Monitor all user and system activities.
+                    </p>
+                </div>
+
+                <div class="flex gap-3">
+
+                    <button class="px-5 py-3 rounded-xl bg-white shadow hover:shadow-lg transition">
+                        <i class="fa-solid fa-filter mr-2"></i>
+                        Filter
+                    </button>
+
+                    <button class="px-5 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">
+                        <i class="fa-solid fa-download mr-2"></i>
+                        Export Logs
+                    </button>
+
+                </div>
+
+            </div>
+            <!-- Fullscreen Button -->
+
+            <button id="fullscreenBtn"
+                    class="fixed bottom-24 left-6 z-50 w-14 h-14 rounded-full
+               bg-blue-600 text-white shadow-xl hover:scale-110 transition">
+
+                <i class="fa-solid fa-expand"></i>
+
+            </button>
+            <!-- Statistics -->
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+
+                <div class="bg-white rounded-2xl shadow p-5 hover:-translate-y-1 transition">
+
+                    <div class="flex justify-between">
+
+                        <div>
+                            <p class="text-slate-500">Today's Logs</p>
+                            <h2 class="text-3xl font-bold mt-2">126</h2>
+                        </div>
+
+                        <i class="fa-solid fa-clock-rotate-left text-3xl text-blue-600"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5 hover:-translate-y-1 transition">
+
+                    <div class="flex justify-between">
+
+                        <div>
+                            <p class="text-slate-500">Login Events</p>
+                            <h2 class="text-3xl font-bold mt-2">58</h2>
+                        </div>
+
+                        <i class="fa-solid fa-right-to-bracket text-3xl text-green-600"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5 hover:-translate-y-1 transition">
+
+                    <div class="flex justify-between">
+
+                        <div>
+                            <p class="text-slate-500">Updated Records</p>
+                            <h2 class="text-3xl font-bold mt-2">41</h2>
+                        </div>
+
+                        <i class="fa-solid fa-pen-to-square text-3xl text-orange-500"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="bg-white rounded-2xl shadow p-5 hover:-translate-y-1 transition">
+
+                    <div class="flex justify-between">
+
+                        <div>
+                            <p class="text-slate-500">Deleted Records</p>
+                            <h2 class="text-3xl font-bold mt-2">7</h2>
+                        </div>
+
+                        <i class="fa-solid fa-trash text-3xl text-red-500"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Filters -->
+
+            <div class="bg-white rounded-2xl shadow p-5">
+
+                <div class="grid md:grid-cols-4 gap-4">
+
+                    <input
+                            type="text"
+                            placeholder="Search activity..."
+                            class="border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
+
+                    <select class="border rounded-xl px-4 py-3">
+                        <option>All Users</option>
+                        <option>Admin</option>
+                        <option>Employee</option>
+                    </select>
+
+                    <select class="border rounded-xl px-4 py-3">
+                        <option>All Actions</option>
+                        <option>Login</option>
+                        <option>Create</option>
+                        <option>Update</option>
+                        <option>Delete</option>
+                    </select>
+
+                    <input
+                            type="date"
+                            class="border rounded-xl px-4 py-3">
+
+                </div>
+
+            </div>
+
+            <!-- Activity Table -->
+
+            <div class="bg-white rounded-2xl shadow overflow-hidden">
+
+                <div class="p-5 border-b">
+
+                    <h2 class="text-xl font-semibold">
+                        Recent Activities
+                    </h2>
+
+                </div>
+
+                <div class="overflow-x-auto">
+
+                    <table class="min-w-full">
+
+                        <thead class="bg-slate-100">
+
+                        <tr>
+
+                            <th class="text-left px-5 py-4">User</th>
+                            <th class="text-left px-5 py-4">Action</th>
+                            <th class="text-left px-5 py-4">Module</th>
+                            <th class="text-left px-5 py-4">IP Address</th>
+                            <th class="text-left px-5 py-4">Date & Time</th>
+                            <th class="text-left px-5 py-4">Status</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr class="border-b hover:bg-slate-50">
+
+                            <td class="px-5 py-4 font-medium">
+                                Rahul Sharma
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Logged In
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Authentication
+                            </td>
+
+                            <td class="px-5 py-4">
+                                192.168.1.15
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Today 09:35 AM
+                            </td>
+
+                            <td class="px-5 py-4">
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                            Success
+                        </span>
+                            </td>
+
+                        </tr>
+
+                        <tr class="border-b hover:bg-slate-50">
+
+                            <td class="px-5 py-4 font-medium">
+                                Priya Singh
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Updated Customer
+                            </td>
+
+                            <td class="px-5 py-4">
+                                CRM
+                            </td>
+
+                            <td class="px-5 py-4">
+                                192.168.1.22
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Today 10:18 AM
+                            </td>
+
+                            <td class="px-5 py-4">
+                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                            Updated
+                        </span>
+                            </td>
+
+                        </tr>
+
+                        <tr class="hover:bg-slate-50">
+
+                            <td class="px-5 py-4 font-medium">
+                                Aman Gupta
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Deleted Lead
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Leads
+                            </td>
+
+                            <td class="px-5 py-4">
+                                192.168.1.45
+                            </td>
+
+                            <td class="px-5 py-4">
+                                Today 11:42 AM
+                            </td>
+
+                            <td class="px-5 py-4">
+                        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
+                            Deleted
+                        </span>
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- Timeline -->
+
+            <div class="bg-white rounded-2xl shadow p-6">
+
+                <h2 class="text-xl font-semibold mb-6">
+                    Live Activity Timeline
+                </h2>
+
+                <div class="space-y-6">
+
+                    <div class="flex gap-4">
+
+                        <div class="w-4 h-4 rounded-full bg-green-500 mt-2"></div>
+
+                        <div>
+                            <h4 class="font-semibold">
+                                New Customer Added
+                            </h4>
+
+                            <p class="text-slate-500">
+                                Admin created a new customer profile.
+                            </p>
+
+                            <small class="text-slate-400">
+                                5 Minutes Ago
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="flex gap-4">
+
+                        <div class="w-4 h-4 rounded-full bg-blue-500 mt-2"></div>
+
+                        <div>
+                            <h4 class="font-semibold">
+                                Employee Login
+                            </h4>
+
+                            <p class="text-slate-500">
+                                John logged into the CRM.
+                            </p>
+
+                            <small class="text-slate-400">
+                                15 Minutes Ago
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="flex gap-4">
+
+                        <div class="w-4 h-4 rounded-full bg-red-500 mt-2"></div>
+
+                        <div>
+                            <h4 class="font-semibold">
+                                Lead Deleted
+                            </h4>
+
+                            <p class="text-slate-500">
+                                One lead record was removed.
+                            </p>
+
+                            <small class="text-slate-400">
+                                1 Hour Ago
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Analytics Section -->
+            <section class="grid lg:grid-cols-2 gap-6">
+
+                <!-- Daily Activity Chart -->
+                <div class="bg-white rounded-2xl shadow p-6 hover:shadow-xl transition">
+
+                    <div class="flex justify-between items-center mb-5">
+                        <h2 class="text-xl font-semibold text-slate-800">
+                            Daily Activity
+                        </h2>
+
+                        <span class="text-sm text-green-600 font-medium">
+                +12%
+            </span>
+                    </div>
+
+                    <div id="dailyActivityChart"
+                         class="h-72 rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center text-slate-400">
+
+                        Daily Activity Chart
+
+                    </div>
+
+                </div>
+
+                <!-- Weekly Activity Chart -->
+
+                <div class="bg-white rounded-2xl shadow p-6 hover:shadow-xl transition">
+
+                    <div class="flex justify-between items-center mb-5">
+
+                        <h2 class="text-xl font-semibold text-slate-800">
+                            Weekly Activity
+                        </h2>
+
+                        <span class="text-sm text-blue-600">
+                Last 7 Days
+            </span>
+
+                    </div>
+
+                    <div id="weeklyChart"
+                         class="h-72 rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center text-slate-400">
+
+                        Weekly Activity Chart
+
+                    </div>
+
+                </div>
+
+                <!-- Monthly Trend -->
+
+                <div class="bg-white rounded-2xl shadow p-6 hover:shadow-xl transition">
+
+                    <h2 class="text-xl font-semibold mb-5">
+                        Monthly Activity Trend
+                    </h2>
+
+                    <div id="monthlyTrend"
+                         class="h-72 rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center text-slate-400">
+
+                        Monthly Trend Chart
+
+                    </div>
+
+                </div>
+
+                <!-- User Activity -->
+
+                <div class="bg-white rounded-2xl shadow p-6 hover:shadow-xl transition">
+
+                    <h2 class="text-xl font-semibold mb-5">
+                        User Activity Graph
+                    </h2>
+
+                    <div id="userActivity"
+                         class="h-72 rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center text-slate-400">
+
+                        User Activity Graph
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Heatmap + Device Stats -->
+
+            <section class="grid lg:grid-cols-3 gap-6 mt-6">
+
+                <!-- Heatmap -->
+
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow p-6">
+
+                    <div class="flex justify-between items-center mb-5">
+
+                        <h2 class="text-xl font-semibold">
+                            Hour-wise Activity Heatmap
+                        </h2>
+
+                        <span class="text-sm text-slate-500">
+                24 Hours
+            </span>
+
+                    </div>
+
+                    <div id="heatmap"
+                         class="h-72 rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center text-slate-400">
+
+                        Heatmap
+
+                    </div>
+
+                </div>
+
+                <!-- Device Statistics -->
+
+                <div class="bg-white rounded-2xl shadow p-6">
+
+                    <h2 class="text-xl font-semibold mb-6">
+                        Device Statistics
+                    </h2>
+
+                    <!-- Desktop -->
+
+                    <div class="mb-6">
+
+                        <div class="flex justify-between mb-2">
+
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-desktop text-blue-600"></i>
+                                Desktop
+                            </div>
+
+                            <span class="font-semibold">
+                    75%
+                </span>
+
+                        </div>
+
+                        <div class="w-full bg-slate-200 rounded-full h-3">
+
+                            <div class="bg-blue-600 h-3 rounded-full w-3/4 transition-all duration-700"></div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Mobile -->
+
+                    <div class="mb-6">
+
+                        <div class="flex justify-between mb-2">
+
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-green-600"></i>
+                                Mobile
+                            </div>
+
+                            <span class="font-semibold">
+                    20%
+                </span>
+
+                        </div>
+
+                        <div class="w-full bg-slate-200 rounded-full h-3">
+
+                            <div class="bg-green-500 h-3 rounded-full" style="width:20%"></div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Tablet -->
+
+                    <div>
+
+                        <div class="flex justify-between mb-2">
+
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-tablet-screen-button text-purple-600"></i>
+                                Tablet
+                            </div>
+
+                            <span class="font-semibold">
+                    5%
+                </span>
+
+                        </div>
+
+                        <div class="w-full bg-slate-200 rounded-full h-3">
+
+                            <div class="bg-purple-500 h-3 rounded-full" style="width:5%"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+            <div id="activityViewer"
+                 class="fixed inset-0 bg-white z-[80] hidden flex-col">
+
+                <div class="flex justify-between items-center p-6 border-b">
+
+                    <h2 class="text-2xl font-bold">
+                        Fullscreen Activity Logs
+                    </h2>
+
+                    <button id="closeViewer">
+
+                        <i class="fa-solid fa-xmark text-3xl"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-6">
+
+                    <table class="min-w-full">
+
+                        <thead class="bg-slate-100 sticky top-0">
+
+                        <tr>
+
+                            <th class="text-left p-4">User</th>
+                            <th class="text-left p-4">Activity</th>
+                            <th class="text-left p-4">Module</th>
+                            <th class="text-left p-4">Time</th>
+                            <th class="text-left p-4">Status</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr class="border-b hover:bg-slate-50">
+
+                            <td class="p-4">Rahul</td>
+                            <td class="p-4">Customer Created</td>
+                            <td class="p-4">CRM</td>
+                            <td class="p-4">10:30 AM</td>
+                            <td class="p-4">
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                        Success
+                    </span>
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+</div>
+<div th:replace="~{fragments/adminFooter::adminFooter}"></div>
+
+<!-- Floating Filter Button -->
+<button id="filterBtn"
+        class="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full
+               bg-white shadow-xl border hover:scale-110 transition">
+
+    <i class="fa-solid fa-filter text-xl text-slate-700"></i>
+
+</button>
+<!-- Floating Filter Panel -->
+
+<div id="filterPanel"
+     class="fixed top-0 left-0 w-96 h-full bg-white shadow-2xl
+            z-[70] -translate-x-full transition-transform duration-300">
+
+    <div class="flex justify-between items-center p-6 border-b">
+
+        <h2 class="text-2xl font-bold">
+            Filters
+        </h2>
+
+        <button id="closeFilter">
+
+            <i class="fa-solid fa-xmark text-2xl"></i>
+
+        </button>
+
+    </div>
+
+    <div class="p-6 space-y-5 overflow-y-auto h-[calc(100%-80px)]">
+
+        <!-- Search -->
+
+        <div>
+
+            <label class="font-medium block mb-2">
+                Search
+            </label>
+
+            <input type="text"
+                   class="w-full border rounded-xl px-4 py-3"
+                   placeholder="Search activity">
+
+        </div>
+
+        <!-- User -->
+
+        <div>
+
+            <label class="font-medium block mb-2">
+                User
+            </label>
+
+            <select class="w-full border rounded-xl px-4 py-3">
+
+                <option>All Users</option>
+                <option>Admin</option>
+                <option>Manager</option>
+                <option>Employee</option>
+
+            </select>
+
+        </div>
+
+        <!-- Module -->
+
+        <div>
+
+            <label class="font-medium block mb-2">
+                Module
+            </label>
+
+            <select class="w-full border rounded-xl px-4 py-3">
+
+                <option>All Modules</option>
+                <option>Customer</option>
+                <option>Employee</option>
+                <option>Invoice</option>
+
+            </select>
+
+        </div>
+
+        <!-- Date -->
+
+        <div>
+
+            <label class="font-medium block mb-2">
+                Date
+            </label>
+
+            <input type="date"
+                   class="w-full border rounded-xl px-4 py-3">
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="flex gap-3 pt-4">
+
+            <button class="flex-1 bg-blue-600 text-white rounded-xl py-3">
+                Apply
+            </button>
+
+            <button class="flex-1 border rounded-xl py-3">
+                Reset
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+<script>
+    const filterBtn=document.getElementById("filterBtn");
+    const filterPanel=document.getElementById("filterPanel");
+    const closeFilter=document.getElementById("closeFilter");
+
+    filterBtn.onclick=()=>{
+
+        filterPanel.classList.remove("-translate-x-full");
+
+    }
+
+    closeFilter.onclick=()=>{
+
+        filterPanel.classList.add("-translate-x-full");
+
+    }
+
+
+
+    const fullscreenBtn=document.getElementById("fullscreenBtn");
+    const activityViewer=document.getElementById("activityViewer");
+    const closeViewer=document.getElementById("closeViewer");
+
+    fullscreenBtn.onclick=()=>{
+
+        activityViewer.classList.remove("hidden");
+        activityViewer.classList.add("flex");
+
+    }
+
+    closeViewer.onclick=()=>{
+
+        activityViewer.classList.add("hidden");
+        activityViewer.classList.remove("flex");
+
+    }
+</script>
+</html>

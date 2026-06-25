@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface StatusRepo extends JpaRepository<StatusMaster,Long> {
-    public Optional<StatusMaster> findByName(String name);
+//    public Optional<StatusMaster> findByName(String name);
 }
